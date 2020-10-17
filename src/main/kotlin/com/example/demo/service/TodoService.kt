@@ -21,6 +21,11 @@ class TodoService(
                 .orElseThrow { NoResultException("No result id : " + id) }
     }
 
+    fun findByKeyword(keyword: String): List<TodoEntity> {
+        return todoRepository.findByTitleLike(keyword)
+                .filter { t: TodoEntity -> t.deletedAt == null }
+    }
+
     fun create(response: TodoResponse): TodoEntity {
         var entity = TodoEntity.of(response)
 
