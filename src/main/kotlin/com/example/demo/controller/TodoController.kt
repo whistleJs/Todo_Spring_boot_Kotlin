@@ -15,6 +15,11 @@ class TodoController(
         return todoService.findAll()
     }
 
+    @GetMapping("{id}")
+    fun findById(@PathVariable id: Long): TodoEntity {
+        return todoService.findById(id)
+    }
+
     @PostMapping
     fun create(@RequestBody todoResponse: TodoResponse): TodoEntity {
         return todoService.create(todoResponse)
