@@ -9,6 +9,10 @@ import org.springframework.stereotype.Service
 class TodoService(
         var todoRepository: TodoRepository
 ) {
+    fun findAll(): List<TodoEntity> {
+        return todoRepository.findAll()
+    }
+
     fun create(response: TodoResponse): TodoEntity {
         var entity = TodoEntity.of(response)
 
