@@ -11,6 +11,7 @@ class TodoService(
 ) {
     fun findAll(): List<TodoEntity> {
         return todoRepository.findAll()
+                .filter { t: TodoEntity -> t.deletedAt == null }
     }
 
     fun create(response: TodoResponse): TodoEntity {
