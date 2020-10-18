@@ -29,4 +29,9 @@ class TodoController(
     fun create(@RequestBody todoResponse: TodoResponse): TodoEntity {
         return todoService.create(todoResponse)
     }
+
+    @DeleteMapping("{id}")
+    fun deleteById(@PathVariable id: Long): TodoEntity {
+        return todoService.deleteById(id)
+    }
 }
