@@ -4,6 +4,7 @@ import com.example.demo.model.entity.TodoEntity
 import com.example.demo.model.response.TodoResponse
 import com.example.demo.repository.TodoRepository
 import org.springframework.stereotype.Service
+import java.time.LocalDateTime
 import javax.persistence.NoResultException
 
 @Service
@@ -30,5 +31,14 @@ class TodoService(
         var entity = TodoEntity.of(response)
 
         return todoRepository.save(entity)
+    }
+
+    fun deleteById(id: Long): TodoEntity {
+        var entity = findById(id)
+        entity.deletedAt = LocalDateTime.now()
+
+        todoRepository.save(entity)
+
+        return entity
     }
 }
